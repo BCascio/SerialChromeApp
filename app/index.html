@@ -1,0 +1,70 @@
+<!doctype html>
+<html data-ng-app="serialChromeApp" data-ng-csp="">
+    <head>
+        <meta charset="utf-8">
+        <title>SerialChromeApp</title>
+
+        <!-- build:css styles/vendor.css -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css styles/main.css -->
+        <link rel="stylesheet" media="all" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+    </head>
+    <body data-ng-controller="MainCtrl">
+        <div>
+            <h4>Printer Status:
+                <span ng-if="connected == 'true'" class="label label-success"> Connected</span>
+                <span ng-if="connected == 'false'" class="label label-danger">Disconnected</span>
+            </h4>
+            <button ng-click="connectPrinter()" ng-if="connected == 'false'">Connect Printer</button>
+        </div>
+        <div ng-if="connected == 'true'">
+            What you wanna say?: <input id="textToPrint" type="text">
+            <input id="print" type="button" value="Print" ng-click="printText()">
+        </div>
+        <br/>
+        <div ng-if="connected == 'true'">
+            <input class="btn btn-primary" ng-click="enableCardReader()"id="startCardReader" type="button" value="Start card reader">
+            <br/>
+            <textarea id="cardReaderData" disabled="true" rows="1" cols="50" placeholder="Data from card reader"></textarea>
+        </div>
+        <div ng-if="connected == 'true'" style="height:250px;overflow:auto;">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>License Number</th>
+                        <th>Card Number</th>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="license in readLicenses">
+                        <td>
+                            {{license.licenseNumber}}
+                        </td>
+                        <td>
+                            {{license.cardNumber}}
+                        </td>
+                        <td>
+                            {{license.year}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js scripts/index.js -->
+        <script src="./bower_components/angular/angular.js"></script>
+        <script src="scripts/index.js" ></script>
+        <!-- endbuild -->
+    </body>
+</html>

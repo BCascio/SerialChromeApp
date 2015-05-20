@@ -1,0 +1,10 @@
+{
+    "appName": {
+        "message": "SerialChromeApp",
+        "description": "The name of the application"
+    },
+    "appDescription": {
+        "message": "Prototype for APEX 2 communication",
+        "description": "The description of the application"
+    }
+}
